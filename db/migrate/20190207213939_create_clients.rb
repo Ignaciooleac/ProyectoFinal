@@ -7,7 +7,6 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :password
       t.string :phone
       t.references :company, foreing_key: true
-
       t.timestamps
     end
   end

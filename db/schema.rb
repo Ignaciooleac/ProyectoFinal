@@ -16,38 +16,75 @@ ActiveRecord::Schema.define(version: 2019_02_07_215242) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
+    t.bigint "ship_id"
+    t.bigint "port_id"
+    t.datetime "eta"
+    t.datetime "etb"
+    t.datetime "etd"
+    t.string "type"
+    t.string "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["port_id"], name: "index_appointments_on_port_id"
+    t.index ["ship_id"], name: "index_appointments_on_ship_id"
   end
 
   create_table "clients", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.string "phone"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_clients_on_company_id"
   end
 
   create_table "companies", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "operations", force: :cascade do |t|
+    t.bigint "appointment_id"
+    t.bigint "port_id"
+    t.datetime "date"
+    t.string "operation"
+    t.string "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_operations_on_appointment_id"
+    t.index ["port_id"], name: "index_operations_on_port_id"
   end
 
   create_table "ports", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_ports_on_company_id"
   end
 
   create_table "ships", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_ships_on_client_id"
   end
 
   create_table "workers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.string "phone"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_workers_on_company_id"
   end
 
 end

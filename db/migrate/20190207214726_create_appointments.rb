@@ -7,7 +7,7 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
       t.datetime :etb
       t.datetime :etd
       t.string :type
-      t.string quantity
+      t.string :quantity
       t.timestamps
     end
   end
