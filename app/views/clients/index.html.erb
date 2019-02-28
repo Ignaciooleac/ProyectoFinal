@@ -1,0 +1,7 @@
+<h1>Clients#index</h1>
+<ul>
+  <% @clients.each do |client| %>
+    <li><%= link_to client.name, clients_show_path(client)  %></li>
+  <% end %>
+</ul>
+<p>Find me in app/views/clients/index.html.erb</p>
